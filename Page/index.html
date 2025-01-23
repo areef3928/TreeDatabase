@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Database</title>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script type="module" src="app.js" defer></script>
+    <style>
+        /* การตั้งค่าพื้นฐาน */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* ความสูงเต็มหน้าจอ */
+            overflow: hidden; /* ซ่อนการเลื่อน */
+        }
+
+        /* สไตล์สำหรับฟอร์ม */
+        form {
+            background: #ffffff;
+            padding: 20px; /* ลด padding */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 90%; /* กำหนดความกว้างให้เล็กลง */
+            height: auto; /* ปรับขนาดตามเนื้อหา */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px; /* ลดระยะห่าง */
+        }
+
+        h1 {
+            font-size: 1.5rem; /* ขนาดฟอนต์เล็กลง */
+        }
+
+        h2 {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        label {
+            font-size: 0.8rem; /* ขนาดฟอนต์เล็กลง */
+            color: #444;
+            display: block;
+            margin-bottom: 5px; /* ลดระยะห่าง */
+        }
+
+        input {
+            width: 100%;
+            padding: 8px; /* ลด padding */
+            margin-bottom: 10px; /* ลดระยะห่าง */
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.8rem; /* ขนาดฟอนต์เล็กลง */
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border: 1px solid #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(45deg, #4CAF50, #81C784);
+            color: white;
+            padding: 10px; /* ลด padding */
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem; /* ขนาดฟอนต์เล็กลง */
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #81C784, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 10px; /* ลดระยะห่าง */
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Responsive: ทำให้ฟอร์มดูดีในหน้าจอขนาดเล็ก */
+        @media (max-height: 600px) {
+            form {
+                padding: 15px; /* ลด padding */
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 0.9rem;
+            }
+
+            label {
+                font-size: 0.75rem;
+            }
+
+            input {
+                padding: 6px;
+                font-size: 0.75rem;
+            }
+
+            button {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Tree Database</h1>
+        <h2>เพิ่มข้อมูลต้นไม้ใหม่</h2>
+        <form id="tree-form">
+            <div class="form-group">
+                <label for="name">ชื่อต้นไม้:</label>
+                <input type="text" id="name" placeholder="ระบุชื่อของต้นไม้" required>
+            </div>
+
+            <div class="form-group">
+                <label for="auditDate">วันที่ตรวจสอบ:</label>
+                <input type="date" id="auditDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="auditor">ผู้ตรวจสอบ:</label>
+                <input type="text" id="auditor" placeholder="ระบุชื่อผู้ตรวจสอบ" required>
+            </div>
+
+            <div class="form-group">
+                <label for="carbonAbsorption">การดูดซับคาร์บอน (กิโลกรัม):</label>
+                <input type="number" id="carbonAbsorption" placeholder="กรอกปริมาณคาร์บอน" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">คำอธิบาย:</label>
+                <input type="text" id="description" placeholder="รายละเอียดเพิ่มเติม" required>
+            </div>
+
+            <div class="form-group">
+                <label for="height">ความสูง (เมตร):</label>
+                <input type="number" id="height" placeholder="ระบุความสูงของต้นไม้" required>
+            </div>
+
+            <div class="form-group">
+                <label for="latitude">ละติจูด:</label>
+                <input type="text" id="latitude" placeholder="กรอกละติจูด" required>
+            </div>
+
+            <div class="form-group">
+                <label for="longitude">ลองจิจูด:</label>
+                <input type="text" id="longitude" placeholder="กรอกลองจิจูด" required>
+            </div>
+
+            <div class="form-group">
+                <label for="imageUpload">อัปโหลดรูปภาพ:</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>            
+
+            <button type="submit">บันทึกข้อมูล</button>
+        </form>
+    </div>
+
+</body>
+</html>

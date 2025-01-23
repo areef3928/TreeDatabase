@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree List</title>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script type="module" src="list.js" defer></script>
+    <style>
+        /* ตั้งค่าพื้นฐาน */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f9ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* สไตล์สำหรับหัวข้อ */
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* การตั้งค่าสำหรับตาราง */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #e8f5e9;
+        }
+
+        td img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* การตั้งค่าสำหรับพิกัด */
+        .coordinates {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* สำหรับการปรับขนาดตาราง */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.8rem;
+            }
+            td img {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>รายการต้นไม้ที่บันทึก</h2>
+
+    <table id="tree-list">
+        <thead>
+            <tr>
+                <th>ชื่อ</th>
+                <th>ผู้ตรวจสอบ</th>
+                <th>วันที่ตรวจสอบ</th>
+                <th>การดูดซับคาร์บอน (กิโลกรัม)</th>
+                <th>คำอธิบาย</th>
+                <th>ความสูง (เมตร)</th>
+                <th>พิกัด</th>
+                <th>รูปภาพ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- รายการต้นไม้จะแสดงที่นี่ -->
+        </tbody>
+    </table>
+</body>
+</html>

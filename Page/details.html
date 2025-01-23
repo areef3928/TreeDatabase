@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Details</title>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script type="module" src="details.js" defer></script>
+    <style>
+        /* ตั้งค่าพื้นฐาน */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f9ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* กล่องข้อมูลต้นไม้ */
+        .tree-detail {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* รูปภาพต้นไม้ */
+        .tree-detail img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ข้อความ */
+        .tree-detail p {
+            font-size: 1rem;
+            color: #555;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        /* คำอธิบายหัวข้อ */
+        .tree-detail p span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* ปรับให้พอดีกับอุปกรณ์มือถือ */
+        @media (max-width: 768px) {
+            .tree-detail {
+                padding: 15px;
+            }
+            .tree-detail img {
+                max-height: 250px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tree Details</h1>
+
+    <div id="tree-detail" class="tree-detail">
+        <!-- ข้อมูลต้นไม้จะแสดงที่นี่ -->
+        <img src="tree-placeholder.jpg" alt="Tree Image">
+        <p><span>ชื่อ:</span> ต้นไม้ตัวอย่าง</p>
+        <p><span>ผู้ตรวจสอบ:</span> นายตรวจสอบ</p>
+        <p><span>วันที่ตรวจสอบ:</span> 7 มกราคม 2025</p>
+        <p><span>การดูดซับคาร์บอน:</span> 25 กิโลกรัม</p>
+        <p><span>คำอธิบาย:</span> ต้นไม้ใหญ่ให้ร่มเงา</p>
+        <p><span>ความสูง:</span> 15 เมตร</p>
+        <p><span>พิกัด:</span> 13.7563, 100.5018</p>
+    </div>
+
+</body>
+</html>
