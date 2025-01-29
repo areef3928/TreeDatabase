@@ -5,6 +5,7 @@
   },
   "hosting": {
     "public": "public",
+    "site": "cfme",  
     "ignore": [
       "firebase.json",
       "**/.*",
