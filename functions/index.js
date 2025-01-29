@@ -1,21 +1,19 @@
-const { onRequest } = require("firebase-functions/v2/https");
+/**
+ * Import function triggers from their respective submodules:
+ *
+ * const {onCall} = require("firebase-functions/v2/https");
+ * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
+ *
+ * See a full list of supported triggers at https://firebase.google.com/docs/functions
+ */
+
+const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 
-exports.helloWorld = onRequest((request, response) => {
-  // การล็อกข้อมูลจาก request
-  logger.info("Received request", { requestData: request.body });
+// Create and deploy your first functions
+// https://firebase.google.com/docs/functions/get-started
 
-  // ตรวจสอบว่าเป็นการร้องขอแบบ GET หรือ POST
-  if (request.method === "GET") {
-    response.status(200).send("Hello from Firebase! This is a GET request.");
-  } else if (request.method === "POST") {
-    // หากมีข้อมูลจาก body ของ POST
-    const name = request.body.name || "Guest";
-    response.status(200).json({
-      message: `Hello, ${name}! This is a POST request.`,
-      dataReceived: request.body
-    });
-  } else {
-    response.status(405).send("Method Not Allowed. Only GET and POST are allowed.");
-  }
-});
+// exports.helloWorld = onRequest((request, response) => {
+//   logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
